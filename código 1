@@ -1,0 +1,14 @@
+public class nodeone {
+    public int date;
+    public nodeone siguiente;
+    public nodeone (int d){
+        this.date=d;
+        this.siguiente=null;
+    }
+  
+    public nodeone(int d, nodeone n){
+        date=d;
+        siguiente=n;
+    }
+
+}
