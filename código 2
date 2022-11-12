@@ -1,0 +1,149 @@
+import javax.swing.*;
+
+import jdk.javadoc.internal.tool.Start;
+
+
+public class list {
+    protected nodeone inicio, final;
+
+    public list(){
+        start=null;
+        final=null;
+    }
+    public boolean isEmpty(){
+        if(start==null)
+            return true;
+        else return false;
+    }
+
+    public void addToFinal(int element){
+        if(!isEmpty()){
+            final.siguiente=new nodeone(element);
+            final=final.next;
+        }else
+            start=final=new nodeone(element);
+    }
+    public int deleteFromStart(){
+        int elemento=start.date;
+        if(start == final){
+            start=final=null;
+        }else {
+            start=start.next;
+        }
+        return element;
+    }
+    public int deleteFromFinal(){
+        int element=final.date;
+        if(start==final){
+            start=final=null;
+        }else{
+            nodeone temporal=start;
+            while (temporal.next!=final){
+                temporal=temporal.next;
+            }
+            final=temporal;
+            final.next=null;
+        }
+        return elemento;
+    }
+    public void delete(int element){
+        if(!isEmpty()){
+            if(start==final && element==start.date){
+                start=final=null;
+            }else if(element==start.date){
+                start=start.next;
+            }else{
+                nodeone previous,temporal;
+                previousstart;
+                temporal=start.next;
+                while (temporal!=null && temporal.date!=element){
+                   previous=previous.next;
+                    temporal=temporal.next;
+                }
+                if(temporal!=null){
+                    previous.previous=temporal.next;
+                    if(temporal==final){
+                        final=previous;
+                    }
+                }
+
+            }
+        }
+    }
+    public boolean isOnTheList(int element){
+        nodeone temporal=start;
+        while (temporal!=null && temporal.date!=element){
+            temporal=temporal.next;
+        }
+        return temporal!=null;
+    }
+
+    public void  addToTheStart(int element){
+        start=new nodeonr(element, start);
+        if (final==null){
+            final=start;
+        }
+    }
+    public void showList(){
+        nodeone recorrer=start;
+        System.out.println();
+        while (recorrer!=null){
+            System.out.print("["+recorrer.dato+"]"+"-->");
+            recorrer=recorrer.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        int opcion=0,el;
+        list lista =new list();
+        do{
+            try {
+                opcion=Integer.parseInt(JOptionPane.showInputDialog(null,"1.Crear lista\n 2.Insertar elemento a la lista\n " +
+                      "3.Borrar elemento de la lista\n"+"4.Actualizar lista\n"+"" +
+                      "5.Imprimir lista\n"
+                    +"6.Salir del programa","Menu de opciones",3));
+                
+                switch (opcion){
+                    case 1:
+                        lista.mostrarlista();
+                        break;
+                    case 2:
+                        el=listita.deleteFromStart();
+                        JOptionPane.showMessageDialog(null,"El elemento insertado es: "+el,"Eliminando nodo del incio.",JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                    case 3:
+                        el=listita.borrarDelFinal();
+                        JOptionPane.showMessageDialog(null,"El elemento eliminado es: "+el,"Eliminando nodo del final.",JOptionPane.INFORMATION_MESSAGE);
+
+                        break;
+
+                    case 4:
+
+                        el=Integer.parseInt(JOptionPane.showInputDialog(null,"Actualizar lista: ","Eliminando nodos en especificos",JOptionPane.INFORMATION_MESSAGE));
+                        listita.eliminar(el);
+                        JOptionPane.showMessageDialog(null,"Los elementos eliminados son: " + el,"Elimando nodos en especifico",JOptionPane.INFORMATION_MESSAGE);
+
+                        break;
+
+                    case 5:
+                        el=Integer.parseInt(JOptionPane.showInputDialog(null,"Imprimir lista: ","Buscando nodos en la lista",JOptionPane.INFORMATION_MESSAGE));
+                        if(listita.estaEnLaLista(el)){
+                            JOptionPane.showMessageDialog(null,"Los elementos: "+el+" si estan en la lista","nodo encontrado",JOptionPane.INFORMATION_MESSAGE);
+                        }
+
+                        break;
+
+                    case 6:
+                        break;
+                    default:
+                }
+            }
+            catch (Exception e){
+
+            }
+        }while (opcion!=8);{
+
+        }
+    }
+
+}
